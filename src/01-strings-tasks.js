@@ -127,7 +127,8 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return str.slice(0, str.indexOf(value)) + str.slice(str.indexOf(value) + value.length, str.length);
+  return str
+    .slice(0, str.indexOf(value)) + str.slice(str.indexOf(value) + value.length, str.length);
 }
 
 /**
@@ -202,11 +203,11 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(width, height) {  
-  let str1 = '┌' + '─'.repeat(width - 2) + '┐\n';
-  let str2 = '│' + ' '.repeat(width - 2) + '│\n';
-  let str3 = '└' + '─'.repeat(width - 2) + '┘\n';
-  let str = str1 + str2.repeat(height - 2) + str3;
+function getRectangleString(width, height) {
+  const str1 = `┌${'─'.repeat(width - 2)}┐\n`;
+  const str2 = `│${' '.repeat(width - 2)}│\n`;
+  const str3 = `└${'─'.repeat(width - 2)}┘\n`;
+  const str = str1 + str2.repeat(height - 2) + str3;
   return str;
 }
 
@@ -228,9 +229,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  let alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  let rot13alph = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';  
-  return str.replace(/[A-Za-z]/g, function (match) {return match = rot13alph[alph.indexOf(match)]});
+  const alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const rot13alph = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let replacer = (match) => match = rot13alph[alph.indexOf(match)];
+  return str.replace(/[A-Za-z]/g, replacer);
 }
 
 /**
@@ -247,7 +249,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return Object.prototype.toString.call(value) === "[object String]";
+  return Object.prototype.toString.call(value) === '[object String]';
 }
 
 
@@ -276,7 +278,7 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  let cards = 'A♣,2♣,3♣,4♣,5♣,6♣,7♣,8♣,9♣,10♣,J♣,Q♣,K♣,A♦,2♦,3♦,4♦,5♦,6♦,7♦,8♦,9♦,10♦,J♦,Q♦,K♦,A♥,2♥,3♥,4♥,5♥,6♥,7♥,8♥,9♥,10♥,J♥,Q♥,K♥,A♠,2♠,3♠,4♠,5♠,6♠,7♠,8♠,9♠,10♠,J♠,Q♠,K♠';    
+  const cards = 'A♣,2♣,3♣,4♣,5♣,6♣,7♣,8♣,9♣,10♣,J♣,Q♣,K♣,A♦,2♦,3♦,4♦,5♦,6♦,7♦,8♦,9♦,10♦,J♦,Q♦,K♦,A♥,2♥,3♥,4♥,5♥,6♥,7♥,8♥,9♥,10♥,J♥,Q♥,K♥,A♠,2♠,3♠,4♠,5♠,6♠,7♠,8♠,9♠,10♠,J♠,Q♠,K♠';
   return cards.split(',').indexOf(value);
 }
 
